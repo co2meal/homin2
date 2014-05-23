@@ -1,0 +1,26 @@
+<%
+
+%>
+
+
+<form action="common_table2">
+	<div id="sids">
+		<div>
+			<input name="sid[]" type="text" />
+		</div>
+			
+	</div>
+	<div>
+		<button id="add-sid">Add sid</button>
+	</div>
+	<div>
+		<input type="submit" value="Make common table" />
+	</div>
+</form>
+
+<script>
+	$('#add-sid').click(function(e) {
+		$('#sids').append($('<div><input name="sid[]" type="text" /></div>'));
+		e.preventDefault();
+	});
+</script>

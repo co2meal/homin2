@@ -1,0 +1,51 @@
+<div class="common-table">
+
+  <div class="common-table-left-col" >
+    <div class="time"></div>
+    <div class="time">A</div>
+    <div class="time">B</div>
+    <div class="time">C</div>
+    <div class="time">D</div>
+    <div class="time">E</div>
+    <div class="time">F</div>
+  </div>
+  <div class="common-table-right-col" >
+    <div class="common-table-header">
+      <div class="day">월</div>
+      <div class="day">화</div>
+      <div class="day">수</div>
+      <div class="day">목</div>
+      <div class="day">금</div>
+    </div>
+    <div class="common-table-content">
+      <%  
+        @users.each_with_index do |user, i|
+          user.taking_lectures.where("time IS NOT NULL").each do |lecture|
+            timeslices_from_lecture(lecture).each do |timeslice|
+      %>
+      <div class="color-for-user<%=i%>" style="<%=css_from_timeslice(timeslice)%>" data-debug="<%=lecture.time%>"></div>
+
+
+      <%
+            end
+          end
+        end
+      %>
+    </div>
+  </div>
+
+  <div class="common-table-legend">
+    <%
+      @users.each_with_index do |user, i|
+    %>
+    <div class="legend-item">
+      <div class="legend-item-color color-for-user<%=i%>"></div>
+      <div class="legend-item-text"><%= if user.name then user.name else user.sid end%></div>
+    </div>
+
+    <%
+      end
+    %>
+  </div>
+
+</div>

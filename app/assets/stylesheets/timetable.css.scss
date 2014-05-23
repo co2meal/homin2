@@ -1,0 +1,94 @@
+// Place all the styles related to the timetable controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.common-table {
+  height: 100%;
+  .common-table-left-col {
+    float: left;
+    height: 100%;
+    width: 10%;
+    .time {
+      height: 14.28571%;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 25px;
+      text-align: center;
+    }
+  }
+  .common-table-right-col {
+    float: left;
+    height: 100%;
+    width: 80%;
+  }
+  .common-table-legend {
+    float: left;
+    height: 100%;
+    width: 10%;
+    margin-top: 100px;
+
+    .legend-item {
+      height: 20px;
+      margin: 2px;
+
+      .legend-item-color {
+        float: left;
+        width:20px;
+        height:20px;
+        border-radius: 10px;
+      }
+
+      .legend-item-text {
+        margin-left: 22px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.common-table-header {
+  height: 1/7*100%;
+
+  .day {
+    width: 20%;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 32px;
+
+  }
+}
+
+.common-table-content {
+  position: relative;
+  height: 6/7 * 100%;
+}
+
+.color-for-user0 {
+  position: absolute;
+  opacity: 0.5;
+  background: red;
+}
+
+.color-for-user1 {
+  position: absolute;
+  opacity: 0.5;
+  background: green;
+}
+
+.color-for-user2 {
+  position: absolute;
+  opacity: 0.5;
+  background: blue;
+}
+
+.color-for-user3 {
+  position: absolute;
+  opacity: 0.5;
+  background: yellow;
+}
