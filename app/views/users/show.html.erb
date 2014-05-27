@@ -1,0 +1,25 @@
+<strong><%= current_user.name %></strong>님 
+<%= link_to "Sign out", signout_path, id: "sign_out" %>
+
+<ul>
+  <li><%=current_user.name%></li>
+  <li>정보 컴퓨터 공학과(가짜)</li>
+  <li><%=current_user.sid%></li>
+  <li>4학년(가짜)</li>
+  <li>신입학(가짜)</li>
+  <li>재학(가짜)</li>
+</ul>
+
+시간표
+<ul>
+  <% current_user.timetables.each do |timetable| %>
+  <li> <%= link_to timetable.name, timetable %> </li>
+  <% end %>
+</ul>
+
+<p>
+  <%= link_to "공통시간표 만들기", common_table_timetables_path %>
+</p>
+<p>
+  <%= link_to "새 시간표", :new_timetable %>  
+</p>

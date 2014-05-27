@@ -1,4 +1,5 @@
 class FacadeController < ApplicationController
-	def next
-	end
+  def index
+    redirect_to user_path(current_user) if current_user
+  end
 end

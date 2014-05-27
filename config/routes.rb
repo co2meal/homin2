@@ -18,9 +18,8 @@ Project::Application.routes.draw do
   resources :users do
     get 'register', on: :collection
   end
-  resources :timetable do
+  resources :timetables do
     get 'common_table', on: :collection
-    get 'common_table2', on: :collection
   end
 
   # Example of regular route:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514122916) do
+ActiveRecord::Schema.define(version: 20140527104909) do
 
   create_table "lectures", force: true do |t|
     t.string   "lid"
@@ -30,15 +30,22 @@ ActiveRecord::Schema.define(version: 20140514122916) do
     t.datetime "updated_at"
   end
 
-  create_table "timetable", force: true do |t|
-    t.string   "sid"
-    t.string   "tid"
-    t.string   "name"
-    t.string   "lecture"
-    t.string   "totcredit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "timetable_items", force: true do |t|
+    t.integer "user_id"
+    t.integer "lecture_id"
+    t.integer "timetable_id"
   end
+
+  add_index "timetable_items", ["lecture_id"], name: "index_timetable_items_on_lecture_id"
+  add_index "timetable_items", ["timetable_id"], name: "index_timetable_items_on_timetable_id"
+  add_index "timetable_items", ["user_id"], name: "index_timetable_items_on_user_id"
+
+  create_table "timetables", force: true do |t|
+    t.integer "user_id"
+    t.string  "name"
+  end
+
+  add_index "timetables", ["user_id"], name: "index_timetables_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "provider"

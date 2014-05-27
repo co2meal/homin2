@@ -1,0 +1,6 @@
+<%= render partial: "timetable", locals: {timetable: @timetable, legend: capture do @timetable.users.each do |user| %>
+  <div class="legend-item">
+    <div class="legend-item-color" style="background-color: <%=user.color%>;"></div>
+    <div class="legend-item-text"><%= if user.name then user.name else user.sid end%></div>
+  </div>
+<% end end } %>

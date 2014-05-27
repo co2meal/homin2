@@ -1,0 +1,39 @@
+<div class="common-table">
+  <div class="common-table-left-col" >
+    <div class="time"></div>
+    <div class="time">A</div>
+    <div class="time">B</div>
+    <div class="time">C</div>
+    <div class="time">D</div>
+    <div class="time">E</div>
+    <div class="time">F</div>
+  </div>
+  <div class="common-table-right-col" >
+    <div class="common-table-header">
+      <div class="day">월</div>
+      <div class="day">화</div>
+      <div class="day">수</div>
+      <div class="day">목</div>
+      <div class="day">금</div>
+    </div>
+    <div class="common-table-content">
+    </div>
+  </div>
+
+  <div class="common-table-legend">
+    <%= legend %>
+  </div>
+</div>
+<script>
+<%
+  if timetable
+    timetable.items.each do |item|
+      timeslices_from_lecture(item.lecture).each do |timeslice|
+%>
+add_timeslice("<%=css_from_timeslice(timeslice)%>", "<%=item.user.color%>", "<%=item.lecture.lid%>"); //<%=item.lecture.time%>"
+<%
+      end
+    end
+  end
+%>
+</script>

@@ -1,2 +1,0 @@
-class CommonTableController < ApplicationController
-end

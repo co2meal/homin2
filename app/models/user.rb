@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 	has_many :sugangs
   has_many :taking_lectures, {through: :sugangs, source: :lecture}, -> { where(status: 'taking') }
+  has_many :timetables
 
   validates :sid, uniqueness: true
-  after_save :crawl, if: :sid_changed?
+  after_save :crawl_lectures, if: :sid_changed?
 
   #User.first.taking_lectures << Lecture.first
   # then taking kkul
@@ -18,11 +19,11 @@ class User < ActiveRecord::Base
 	  end
 	end
 
-  def crawled?
-    taking_lectures.exists?
+  def color
+    '#' + id.hash.abs.to_s(16)[0,6]
   end
 
-  def crawl
+  def crawl_lectures
     taking_lectures.clear
     #for this semester
     payload = <<PAYLOAD
@@ -68,7 +69,7 @@ PAYLOAD
     for data4 in lecture_credit
       array_credit <<data4.to_s
     end
-    Rails.logger.info array_name.length
+    # Rails.logger.info array_name.length
     
     if array_name.length != 0
       for i in 0...array_name.length
@@ -81,8 +82,8 @@ PAYLOAD
        end
     end
 
-    Rails.logger.info array_name
-    Rails.logger.info array_time
-    Rails.logger.info array_id
+    # Rails.logger.info array_name
+    # Rails.logger.info array_time
+    # Rails.logger.info array_id
   end
 end

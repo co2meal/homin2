@@ -1,9 +1,4 @@
-<%
-
-%>
-
-
-<form action="common_table2">
+<%= form_for @timetable do %>
 	<div id="sids">
 		<div>
 			<input name="sid[]" type="text" />
@@ -11,16 +6,17 @@
 			
 	</div>
 	<div>
-		<button id="add-sid">Add sid</button>
+		<button type="button" id="add-sid">Add sid</button>
 	</div>
 	<div>
 		<input type="submit" value="Make common table" />
 	</div>
-</form>
+
+<% end %>
 
 <script>
 	$('#add-sid').click(function(e) {
 		$('#sids').append($('<div><input name="sid[]" type="text" /></div>'));
-		e.preventDefault();
+		$('#sids div:last-child input').focus()
 	});
 </script>
