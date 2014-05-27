@@ -18,7 +18,6 @@ class TimetableController < ApplicationController
 			no_sids = params['sid'] - User.where("sid IN (?)", params['sid']).select(:sid).map(&:sid)
 			no_sids.each do |sid|
 				user = User.create(sid: sid)
-				user.crawl if not user.crawled?
 			end
 
 			@users = User.where("sid IN (?)", params['sid'])

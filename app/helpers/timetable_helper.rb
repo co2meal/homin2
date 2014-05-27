@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TimetableHelper
   def timeslices_from_lecture(lecture) 
     lecture.time.split(/\([^\)]*\)/).map(&:strip).map {|str| [str[0],str[1,str.length]] }

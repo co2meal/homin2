@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :taking_lectures, {through: :sugangs, source: :lecture}, -> { where(status: 'taking') }
 
   validates :sid, uniqueness: true
-
+  after_save :crawl, if: :sid_changed?
 
   #User.first.taking_lectures << Lecture.first
   # then taking kkul
@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def crawl
+    taking_lectures.clear
     #for this semester
     payload = <<PAYLOAD
 <?xml version="1.0" encoding=http://haksa.ajou.ac.kr/uni/uni/cour/tlsn/findCourPersonalTakingLessonAply.action"utf-8"?>
