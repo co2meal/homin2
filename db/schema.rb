@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140527104909) do
     t.datetime "updated_at"
   end
 
+  create_table "timetable", force: true do |t|
+    t.string   "sid"
+    t.string   "tid"
+    t.string   "name"
+    t.string   "lecture"
+    t.string   "totcredit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "timetable_items", force: true do |t|
     t.integer "user_id"
     t.integer "lecture_id"
