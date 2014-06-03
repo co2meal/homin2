@@ -1,6 +1,28 @@
-<%= render partial: "timetable", locals: {timetable: @timetable, legend: capture do @timetable.users.each do |user| %>
-  <div class="legend-item">
-    <div class="legend-item-color" style="background-color: <%=user.color%>;"></div>
-    <div class="legend-item-text"><%= if user.name then user.name else user.sid end%></div>
-  </div>
-<% end end } %>
+<%= render partial: "timetable", locals: {timetable: @timetable, legend: capture do %>
+
+  <% if @timetable.users.count > 1 %>
+      <% @timetable.users.each do |user| %>
+
+      <div class="legend-item">
+        <div class="legend-item-color" style="background-color: <%=user.color%>;"></div>
+        <div class="legend-item-text"><%= if user.name then user.name else user.sid end%></div>
+      </div>
+
+    <% end %>
+
+  <% else %>
+
+  <% @timetable.items.includes(:lecture).map(&:lecture).each do |lecture| %>
+    <div class="legend-item lecture" data-time="<%=lecture.time%>" data-lid="<%=lecture.lid%>" data-color="<%=lecture.color%>">
+      <input type="checkbox" id="lecture_<%=lecture.lid%>" name="lectures[]" value="<%=lecture.lid%>" style="display: none; "/>
+      <div class="legend-item-color" style="background-color: <%=lecture.color%>;"></div>
+      <div class="legend-item-text">
+        <label for="lecture_<%=lecture.lid%>" style="display: block;"> <%= lecture.name %> </label>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% end %>
+
+<% end } %>

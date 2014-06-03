@@ -30,7 +30,7 @@
     timetable.items.each do |item|
       timeslices_from_lecture(item.lecture).each do |timeslice|
 %>
-add_timeslice("<%=css_from_timeslice(timeslice)%>", "<%=item.user.color%>", "<%=item.lecture.lid%>"); //<%=item.lecture.time%>"
+add_timeslice("<%=css_from_timeslice(timeslice)%>", "<%=if timetable.users.count > 1 then item.user.color else item.lecture.color end %>", "<%=item.lecture.lid%>"); //<%=item.lecture.time%>"
 <%
       end
     end

@@ -42,8 +42,8 @@ window.css_from_timeslice = (timeslice) ->
 
   css
 
-$ ->
-  $('.lecture input').change (e) ->
+ready = ->
+  $('form .lecture input').change (e) ->
     $input = $(e.currentTarget)
     $lecture = $input.parent()
     $legendItemColor = $lecture.find('.legend-item-color')
@@ -60,3 +60,6 @@ $ ->
     else
       $legendItemColor.css('visibility', 'hidden')
       $(".#{lid}").remove()
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

@@ -15,7 +15,6 @@ class TimetablesController < ApplicationController
 
 		@timetable = current_user.timetables.new
 		if params[:sid]
-
 			no_sids = params['sid'] - User.where("sid IN (?)", params['sid']).select(:sid).map(&:sid)
 			no_sids.each do |sid|
 				user = User.create(sid: sid)
@@ -26,9 +25,16 @@ class TimetablesController < ApplicationController
 					@timetable.items.new user: user, lecture: lecture
 				end
 			end
+			@timetable.name = User.where("sid IN (?)", params['sid']).map{|user| user.name or user.sid }.join(" ")
+
+		elsif params[:lectures]
+			lids = params[:lectures]
+			lids.each do |lid|
+				@timetable.items.new(lecture: Lecture.find_by_lid(lid), user: current_user)
+			end
+			@timetable.name = "My timetable"
 		end
 
-		@timetable.name = User.where("sid IN (?)", params['sid']).map{|user| user.name or user.sid }.join(" ")
 		@timetable.save!
 
 		redirect_to @timetable
